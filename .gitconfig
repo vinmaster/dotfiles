@@ -1,7 +1,48 @@
 [user]
-	email = vinmaster99@gmail.com
-	name = Vincent Ho
+  name = Vincent Ho
+  email = vinmaster99@gmail.com
 [alias]
+  aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
+  c = commit
   co = checkout
   s = status
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  b = branch
+  ss = status --short --branch
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lg-branch = !git lg --first-parent # List commits in this branch
+  lg-branch-no-merges = !git lg --first-parent --no-merges
+  lgg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+  merge-noff = merge --no-ff # No fast forward
+  merge-squash = merge --squash # Merge and squash all commits into one
+  unstage = reset HEAD --
+  discard-unstaged = co -- .
+  dry-cleanup = clean -fd --dry-run
+  cleanup = clean -fd
+  undo-initcommit = update-ref -d HEAD
+  undo-commit = reset --soft HEAD~1 # undo last commit
+  commend = commit --amend --no-edit # Add staged file to last commit
+  stat = diff --stat HEAD^ HEAD
+  graph = git log --graph --all --decorate --stat --date=iso
+  word-diff = diff --word-diff
+  recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
+  overview = log --all --oneline --no-merges
+  recap = !git log --all --oneline --no-merges --author=${1-$(git config user.email)}
+  #changelog = "!changelog() { git log --oneline --no-merges $1..HEAD; }; changelog"
+  changelog = !git log --oneline --no-merges ${1-$(git describe --abbrev=0)}..HEAD
+  stash-any = stash --include-untracked # Stash untracked and tracked files
+  stash-all = stash --all # Stash ignored, untracked, and tracked files
+  log-last = log -1 HEAD
+  untrack = rm --cached # Remove file from repo and history
+  remotes = remote -v
+  push-all = "!pushall() { git push origin $1 && git push ci $1; }; pushall"
+  la = "!git config -l | grep alias | cut -c 7-" # list aliases
+  ls-branch = branch -r
+  grep-history = "!grephistory() { git rev-list --all | git grep $1; }; grephistory" # Grep commit changes
+  grep-message = log --oneline --grep= # Grep commit history
+  pick-file = ls-files | pick | xargs less
+  branches = "!sh -c \"git checkout $(git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | pick | cut -f2)\""
+  git = !exec git
+[core]
+  editor = /usr/bin/vim
+[pull]
+  rebase = true
