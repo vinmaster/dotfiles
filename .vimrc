@@ -7,14 +7,11 @@ Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-scripts/AutoTag'
 Plug 'pangloss/vim-javascript'
-"Plug 'kchmck/vim-coffee-script'
 Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-ruby/vim-ruby'
 Plug 'nathanaelkane/vim-indent-guides'
-"Plug 'elixir-lang/vim-elixir'
 Plug 'flazz/vim-colorschemes'
-Plug 'trevordmiller/nova-vim'
 call plug#end()
 
 "filetype plugin indent on
@@ -61,10 +58,6 @@ nnoremap <C-H> <C-W><Left>
 nnoremap <C-L> <C-W><Right>
 
 "colorscheme default
-"colorscheme molokai
-"colorscheme codeschool
-"colorscheme tomorrow-night
-"colorscheme nova
 colorscheme hybrid
 syntax on
 
