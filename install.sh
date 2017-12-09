@@ -10,7 +10,6 @@ files=(
   ".tmux.conf"
   ".bash_profile"
   ".vimrc"
-  ".vim"
 )
 function check_cmd() {
   if ! command -v $1 >/dev/null 2>&1; then
@@ -43,8 +42,7 @@ green_text "Selected $choice. ${install_choices[$choice-1]}"
 echo
 
 # Chose install method
-if [ $choice -ne 3 ]
-then
+if [ $choice -ne 3 ]; then
   for file in ${files[@]}; do
     yesno="y"
     # Check if interactive
