@@ -7,8 +7,9 @@ install_choices=(
   "Install only one"
 )
 files=(
-  ".tmux.conf"
   ".bash_profile"
+  ".gitconfig"
+  ".tmux.conf"
   ".vimrc"
 )
 function check_cmd() {
