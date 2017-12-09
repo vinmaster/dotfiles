@@ -2,8 +2,7 @@
 
 ## Installation
 ```bash
-curl https://raw.github.com/vinmaster/dotfiles/master/install.sh -L -o - | bash
-
+bash <(curl https://raw.github.com/vinmaster/dotfiles/master/install.sh -L -o -)
 ```
 
 ### .bashrc
