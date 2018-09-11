@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#cmd=("$@");
+#echo "Running command ${cmd[*]}";
+
+if [ $# -ne 0 ]; then
+  cmd=$@;
+  echo "Running command $cmd";
+  eval $cmd;
+else
+  echo "Canceled"
+  exit 1
+fi
+

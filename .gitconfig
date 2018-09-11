@@ -16,33 +16,46 @@
   merge-squash = merge --squash # Merge and squash all commits into one
   unstage = reset HEAD --
   discard-unstaged = co -- .
-  dry-cleanup = clean -fd --dry-run
-  cleanup = clean -fd
+  dry-clean = clean -fd --dry-run
+  clean-force = clean -fd # Remove untracked files
   undo-initcommit = update-ref -d HEAD
   undo-commit = reset --soft HEAD~1 # undo last commit
   commend = commit --amend --no-edit # Add staged file to last commit
+  diff-staged = diff --staged # git diff --cached
   stat = diff --stat HEAD^ HEAD
   graph = git log --graph --all --decorate --stat --date=iso
   word-diff = diff --word-diff
+  diff-branch = "!f() { branch1=${1-staging}; branch2=${2-production}; git log --left-right --graph --cherry-pick --oneline $branch1...$branch2; }; f"
+  # diff-branch = log --oneline staging ^production
   recent = for-each-ref --count=10 --sort=-committerdate refs/heads/ --format="%(refname:short)"
   overview = log --all --oneline --no-merges
   recap = !git log --all --oneline --no-merges --author=${1-$(git config user.email)}
   #changelog = "!changelog() { git log --oneline --no-merges $1..HEAD; }; changelog"
+  findchanges = !git log -S "$1" -- ${2-.} # git log -S "<code>" -- file_paths
   changelog = !git log --oneline --no-merges ${1-$(git describe --abbrev=0)}..HEAD
-  stash-any = stash --include-untracked # Stash untracked and tracked files
+  stash-include-untracked = stash --include-untracked # Stash untracked and tracked files
   stash-all = stash --all # Stash ignored, untracked, and tracked files
+  stash-show = stash show -p
   log-last = log -1 HEAD
   untrack = rm --cached # Remove file from repo and history
   remotes = remote -v
   push-all = "!pushall() { git push origin $1 && git push ci $1; }; pushall"
   la = "!git config -l | grep alias | cut -c 7-" # list aliases
   ls-branch = branch -r
+  tracked-branch = branch -vv
+  track = branch -u
   grep-history = "!grephistory() { git rev-list --all | git grep $1; }; grephistory" # Grep commit changes
   grep-message = log --oneline --grep= # Grep commit history
   pick-file = ls-files | pick | xargs less
   branches = "!sh -c \"git checkout $(git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | pick | cut -f2)\""
+  set-upstream = branch --set-upstream # git branch --set-upstream master origin/master
   git = !exec git
 [core]
-  editor = /usr/bin/vim
+	# excludesfile = /Users/tytuser/.gitignore_global
+  #editor = /usr/bin/vim
+  editor = code --wait
+  # pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
+  #pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -RS # No line wrap
+  # diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less -r
 [pull]
   rebase = true

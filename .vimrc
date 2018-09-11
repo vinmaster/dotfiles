@@ -12,6 +12,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-ruby/vim-ruby'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'flazz/vim-colorschemes'
+Plug 'easymotion/vim-easymotion'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 "filetype plugin indent on
@@ -26,14 +28,16 @@ set hlsearch          " highlight search results
 set incsearch         " show search matches as you type
 set ignorecase        " case insensitive search
 set number            " show line numbers
-" set list              " show hidden characters
+set list              " show hidden characters
 " set listchars=eol:$,tab:->,trail:~,extends:>,precedes:< " define list characters
 " set listchars=tab:->,trail:~,extends:>,precedes:< " define list characters
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set backspace=indent,eol,start " fix backspace problems
 set ruler             " show cursor position in status bar
 set cursorline        " show a horizontal line where the cursor is
 set mouse=nchv        " use mouse in all mode (normal,insert,command,help,visual mode)
 set showtabline=2     " always show tab bar
+set scrolloff=1       " Always show at least one line above/below the cursor
 set showcmd
 set cmdheight=1
 set ttyfast
@@ -81,6 +85,9 @@ nmap j gj
 nmap k gk
 " Clear search
 nmap \q :nohlsearch<CR>
+" Keep text selected when indenting
+vnoremap < <gv
+vnoremap > >gv
 
 " Commenting blocks of code. C-_ maps to C-/
 nnoremap <C-_> :Commentary<CR>

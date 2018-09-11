@@ -19,6 +19,9 @@ shopt -s histappend
 # Opposite of Ctrl-R
 bind "\C-t":forward-search-history
 
+# Use vi
+export EDITOR=vi
+
 # Allow branch name to be shown in terminal
 export GITAWAREPROMPT=~/.bash/git-aware-prompt
 source "${GITAWAREPROMPT}/main.sh"
@@ -36,3 +39,5 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$GEM_HOME/bin:$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
