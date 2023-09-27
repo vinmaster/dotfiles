@@ -1,0 +1,72 @@
+# .bashrc on Fedora
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+	for rc in ~/.bashrc.d/*; do
+		if [ -f "$rc" ]; then
+			. "$rc"
+		fi
+	done
+fi
+
+unset rc
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+# Opposite of Ctrl-R
+bind "\C-t":forward-search-history
+
+# Unlimited history
+HISTSIZE=
+HISTFILESIZE=
+# ignorespace + ignoredup
+HISTCONTROL=ignoreboth
+# Append to history instead of overwrite
+shopt -s histappend
+# Save all lines of multi-line command to same entry
+shopt -s cmdhist
+# Save multi-line command with embedded newlines instead of semicolon separators
+shopt -s lithist
+# Add timestamp to history
+export HISTTIMEFORMAT="[%F %T] "
+# Flush history immediately instead of exit
+#PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Flush history immediately instead of exit. Clears in-memory and appends history file to memory making multiple shells share history
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Allows ** pattern to be used in path name expansion
+shopt -s globstar
+
+export EDITOR=vi
+export GREP_OPTIONS='--color=always'
+export GITAWAREPROMPT=~/.bash/git-aware-prompt
+source "${GITAWAREPROMPT}/main.sh"
+export PS1="\T \W \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ "
+
+# fzf on Fedora
+if [ -x "$(command -v fzf)"  ]
+then
+  source /usr/share/fzf/shell/key-bindings.bash
+fi
+# Using fd as default command for fzf
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+
+# Custom autocomplete
+#complete -W '10.0.0.47' ping
+

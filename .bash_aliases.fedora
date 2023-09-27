@@ -1,0 +1,28 @@
+alias ls='ls -GF --color=auto'
+alias ll='ls -lah'
+alias lrth='ls -lrth' # Last modified
+alias l.='ls -dG .*'  # List dot files/folders
+alias ls-folder='ls -d -- */' # List folders only
+alias mv='mv -i'
+alias cp='cp -i'
+alias tree='tree -I ".git|node_modules" -aC'
+alias findpid="ps axww -o pid,user,%cpu,%mem,start,time,command | fzf | sed 's/^ *//' | cut -f1 -d' '"
+alias tar-compress='tar -czvf'
+alias tar-extract='tar -xzvf'
+alias flushdns='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+alias pickcd='cd $(find . -maxdepth 1 -type d | fzf)'
+alias stophistory="set +o history"
+alias starthistory="set -o history"
+alias duh="du -h --max-depth=1"
+alias cb='flatpak run app.getclipboard.Clipboard'
+
+# Functions as commands
+up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }
+fswatchrun() { echo "Watching $1 and running command '$2'"; fswatch [opts] -0 $1 | xargs -0 -n1 -I{} $2; }
+taskdone() { notify-send $1; }
+loc() { find . -name '*.$1' | xargs wc -l; }
+findfile() { find . | ag $1; }
+locate-basename() { plocate -b $1; }
+findport() { lsof -wni tcp:$1; }
+findprocess() { lsof $1; }
+
