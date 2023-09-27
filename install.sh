@@ -11,6 +11,8 @@ files=(
   ".gitconfig"
   ".tmux.conf"
   ".vimrc"
+  ".zprofile"
+  ".zshrc"
 )
 function check_cmd() {
   if ! command -v $1 >/dev/null 2>&1; then

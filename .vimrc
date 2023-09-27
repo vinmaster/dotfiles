@@ -14,6 +14,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'flazz/vim-colorschemes'
 Plug 'easymotion/vim-easymotion'
 Plug 'leafgarland/typescript-vim'
+Plug 'elzr/vim-json'
+Plug 'mbbill/undotree'
 call plug#end()
 
 "filetype plugin indent on
@@ -111,3 +113,7 @@ nnoremap <Leader>d{ di{hPl2x
 map <leader>d "_d
 map <leader>y "*y
 map <cr> :w\|!./%<cr>
+
+" undotree
+nnoremap <F5> :UndotreeToggle<CR>
+
