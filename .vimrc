@@ -9,13 +9,15 @@ Plug 'vim-scripts/AutoTag'
 Plug 'pangloss/vim-javascript'
 Plug 'bling/vim-airline'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-ruby/vim-ruby'
+"Plug 'vim-ruby/vim-ruby'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'flazz/vim-colorschemes'
 Plug 'easymotion/vim-easymotion'
 Plug 'leafgarland/typescript-vim'
-Plug 'elzr/vim-json'
-Plug 'mbbill/undotree'
+"Plug 'elzr/vim-json'
+"Plug 'mbbill/undotree'
+"Plug 'christoomey/vim-system-copy'
+Plug 'jasonccox/vim-wayland-clipboard'
 call plug#end()
 
 "filetype plugin indent on
@@ -37,19 +39,24 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set backspace=indent,eol,start " fix backspace problems
 set ruler             " show cursor position in status bar
 set cursorline        " show a horizontal line where the cursor is
-set mouse=nchv        " use mouse in all mode (normal,insert,command,help,visual mode)
+"set mouse=nchv        " use mouse in all mode (normal,insert,command,help,visual mode)
+"set ttymouse=xterm2
+" Fedora settings for mouse
+set mouse=
+set ttymouse=
 set showtabline=2     " always show tab bar
 set scrolloff=1       " Always show at least one line above/below the cursor
 set showcmd
 set cmdheight=1
 set ttyfast
-set ttymouse=xterm2
+"set ttymouse=xterm2
 set pastetoggle=<F2>  " make pasting behave with smart indent
 set noswapfile
 set nobackup
 set autoread
 set nocompatible
-set clipboard=unnamed " use system clipboard
+"set clipboard=unnamed " use system clipboard
+set clipboard=unnamedplus " use system clipboard fedora
 map <F3> :s/^/#
 map <F4> I#<Esc><Esc>
 nnoremap J gT " Goto next tab
@@ -115,5 +122,5 @@ map <leader>y "*y
 map <cr> :w\|!./%<cr>
 
 " undotree
-nnoremap <F5> :UndotreeToggle<CR>
+"nnoremap <F5> :UndotreeToggle<CR>
 
