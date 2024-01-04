@@ -41,15 +41,12 @@ set ruler             " show cursor position in status bar
 set cursorline        " show a horizontal line where the cursor is
 "set mouse=nchv        " use mouse in all mode (normal,insert,command,help,visual mode)
 "set ttymouse=xterm2
-" Fedora settings for mouse
 set mouse=
-set ttymouse=
 set showtabline=2     " always show tab bar
 set scrolloff=1       " Always show at least one line above/below the cursor
 set showcmd
 set cmdheight=1
 set ttyfast
-"set ttymouse=xterm2
 set pastetoggle=<F2>  " make pasting behave with smart indent
 set noswapfile
 set nobackup
