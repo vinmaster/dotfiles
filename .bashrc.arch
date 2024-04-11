@@ -105,7 +105,8 @@ shopt -s cmdhist
 # Save multi-line command with embedded newlines instead of semicolon separators
 shopt -s lithist
 # Add timestamp to history
-export HISTTIMEFORMAT="[%F %T] "
+# export HISTTIMEFORMAT="[%F %T] "
+export HISTTIMEFORMAT="%F %T "
 # Flush history immediately instead of exit
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # Flush history immediately instead of exit. Clears in-memory and appends history file to memory making multiple shells share history
@@ -127,7 +128,6 @@ fi
 # Using fd as default command for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -136,4 +136,3 @@ export PATH=$BUN_INSTALL/bin:$PATH
 export XMODIFIERS=@im=fcitx
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-
