@@ -23,6 +23,7 @@ alias journalctl-errors="journalctl --no-pager --since today --grep 'fail|error|
 alias gsconnect='/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/service/daemon.js'
 alias keepassxc="flatpak run org.keepassxc.KeePassXC -platform xcb > /dev/null &"
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg"
+alias vi='gvim -v'
 
 # Functions as commands
 up() { local p= i=${1:-1}; while (( i-- )); do p+=../; done; cd "$p$2" && pwd; }

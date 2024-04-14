@@ -39,9 +39,9 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set backspace=indent,eol,start " fix backspace problems
 set ruler             " show cursor position in status bar
 set cursorline        " show a horizontal line where the cursor is
-"set mouse=nchv        " use mouse in all mode (normal,insert,command,help,visual mode)
+set mouse=nchv        " use mouse in all mode (normal,insert,command,help,visual mode)
 "set ttymouse=xterm2
-set mouse=
+"set mouse=
 set showtabline=2     " always show tab bar
 set scrolloff=1       " Always show at least one line above/below the cursor
 set showcmd
