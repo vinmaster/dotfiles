@@ -1,8 +1,10 @@
+# Ctrl-Alt-e shell-expand-line
 alias ls='ls -GF --color=auto'
 alias ll='ls -lah'
 alias ll-mod='ls -lrth' # Last modified
 alias l.='ls -dG .*'  # List dot files/folders
 alias ls-folder='ls -d -- */' # List folders only
+alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias tree='tree -I ".git|node_modules" -aC'
@@ -17,11 +19,13 @@ alias df="df -h"
 alias du="du -h"
 alias du-sort="du -sh * | sort -h"
 alias duh="du -h --max-depth=1"
+alias systemctl-list-services="systemctl --type=service"
 alias journalctl-errors="journalctl --no-pager --since today --grep 'fail|error|fatal' --output json|jq '._EXE' | sort | uniq -c | sort --numeric --reverse --key 1"
-
+journalctl-currentboot() { journalctl -u $1 -b; }
 #alias cb='flatpak run app.getclipboard.Clipboard'
 alias gsconnect='/usr/share/gnome-shell/extensions/gsconnect@andyholmes.github.io/service/daemon.js'
-alias keepassxc="flatpak run org.keepassxc.KeePassXC -platform xcb > /dev/null &"
+# alias keepassxc="flatpak run org.keepassxc.KeePassXC -platform xcb > /dev/null &"
+alias keepassxc="flatpak run org.keepassxc.KeePassXC -platform xcb 2>&1"
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg"
 alias vi='gvim -v'
 

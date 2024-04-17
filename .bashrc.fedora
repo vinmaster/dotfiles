@@ -71,4 +71,5 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 # Custom autocomplete
 #complete -W '10.0.0.47' ping
 
+export PATH=~/.npm-global/bin:$PATH
 
