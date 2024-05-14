@@ -73,3 +73,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 
 export PATH=~/.npm-global/bin:$PATH
 
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH

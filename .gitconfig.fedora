@@ -36,6 +36,7 @@
   discard-unstaged = checkout -- .
   dry-clean = clean -fd --dry-run
   clean-force = clean -fd # Remove untracked files
+  push-safe-force = push --force-with-lease # Checks against remote changes
   undo-initcommit = update-ref -d HEAD
   undo-commit = reset --soft HEAD~1 # undo last commit
   commend = commit --amend --no-edit # Add staged file to last commit
@@ -68,3 +69,8 @@
   branches = "!sh -c \"git checkout $(git for-each-ref --sort='-authordate:iso8601' --format=' %(authordate:relative)%09%(refname:short)' refs/heads | pick | cut -f2)\""
   set-upstream = branch --set-upstream # git branch --set-upstream master origin/master
   git = !exec git
+  hide = update-index --assume-unchanged
+  unhide = update-index --no-assume-unchanged
+  show-hidden = ! git ls-files -v | grep '^h' | cut -c3-
+[init]
+  defaultBranch = main
