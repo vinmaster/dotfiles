@@ -38,5 +38,21 @@ findfile() { find . | ag $1; }
 locate-basename() { plocate -b $1; }
 findport() { lsof -wni tcp:$1; }
 findprocess() { lsof $1; }
+findfolder() {
+  # findfolder NAME DEPTH
+  if [[ -z "$2" ]]; then
+    find . -type d -name "*$1*" -print
+  else
+    find . -maxdepth "$2" -type d -name "*$1*" -print
+  fi
+}
 open-folder() { xdg-open < /dev/null $1 & }
-
+pskill() {
+  local selection
+  selection=$(ps -e -o pid,comm | fzf)
+  local pid=$(echo "$selection" | awk '{print $1}')
+  local pname=$(echo "$selection" | awk '{print $2}')
+  if [ "$pid" != "" ]; then
+    kill -9 "$pid" > /dev/null 2>&1 && echo "Process $pname (PID $pid) has been successfully killed."
+  fi
+}

@@ -77,3 +77,8 @@ export PATH=~/.npm-global/bin:$PATH
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
+
+# rust
+. "$HOME/.cargo/env"
+
+. "/home/vho/.deno/env"
