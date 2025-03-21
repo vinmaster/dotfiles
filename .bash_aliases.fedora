@@ -41,10 +41,14 @@ findprocess() { lsof $1; }
 findfolder() {
   # findfolder NAME DEPTH
   if [[ -z "$2" ]]; then
-    find . -type d -name "*$1*" -print
+    find . -name "*$1*" -type d -prune -print
   else
     find . -maxdepth "$2" -type d -name "*$1*" -print
   fi
+}
+deletefolder() {
+  # \; to exec one by one, -print to see progress
+  find . -name "$1" -type d -prune -print -exec rm -rf '{}' \;
 }
 open-folder() { xdg-open < /dev/null $1 & }
 pskill() {
